@@ -1,0 +1,26 @@
+# 테스트는 H2 인메모리로 돌린다. 스키마는 엔티티에서 생성하고 Flyway 는 끈다.
+spring:
+  datasource:
+    url: jdbc:h2:mem:yudillo;MODE=PostgreSQL;DB_CLOSE_DELAY=-1
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: false
+
+  flyway:
+    enabled: false
+
+jwt:
+  secret: test-only-secret-key-for-unit-tests-32bytes-minimum
+  issuer: yudillo-api
+  access-token-validity: 30m
+  refresh-token-validity: 14d
+
+logging:
+  level:
+    root: WARN
+    com.yudillo.api: INFO

@@ -1,0 +1,28 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      // F5 로 실행/디버그. Spring Boot 는 .env 를 자동으로 읽지 않으므로
+      // envFile 로 명시해서 넣어준다. (터미널에서 ./gradlew bootRun 으로 돌릴 때는 적용 안 됨)
+      // projectName 은 적지 않는다. 언어 서버가 인식하는 프로젝트 이름은
+      // settings.gradle 의 'yudillo-api' 가 아니라 폴더명('back-end-develop')이라,
+      // 잘못 적으면 "is not a valid java project" 로 실행이 막힌다.
+      // 워크스페이스에 자바 프로젝트가 하나뿐이면 생략하는 편이 안전하다.
+      "type": "java",
+      "name": "ApiApplication (local)",
+      "request": "launch",
+      "mainClass": "com.yudillo.api.ApiApplication",
+      "envFile": "${workspaceFolder}/.env",
+      "console": "internalConsole"
+    },
+    {
+      // .env 없이 application-local.yml 의 기본값만으로 실행
+      "type": "java",
+      "name": "ApiApplication (기본값)",
+      "request": "launch",
+      "mainClass": "com.yudillo.api.ApiApplication",
+      "args": "--spring.profiles.active=local",
+      "console": "internalConsole"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+# 로컬 개발용. DB 서버를 따로 띄워두고 접속정보만 여기(또는 환경변수)에 맞춘다.
+# docker compose up -d 로 띄운 컨테이너 기준 기본값이다.
+spring:
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/yudillo}
+    username: ${DB_USERNAME:yudillo}
+    password: ${DB_PASSWORD:yudillo}
+
+  jpa:
+    show-sql: true
+
+jwt:
+  # 로컬 전용 더미 키. 운영에서는 절대 재사용하지 말 것.
+  secret: ${JWT_SECRET:local-only-dev-secret-key-please-change-me-32bytes}
+
+logging:
+  level:
+    org.hibernate.SQL: DEBUG
+    org.hibernate.orm.jdbc.bind: TRACE

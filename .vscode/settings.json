@@ -1,0 +1,50 @@
+// 이 파일은 git 에 커밋된다. 사람마다 다른 값(JDK 설치 경로 등)은 넣지 않는다.
+//
+// JDK 경로를 지정해야 한다면 여기가 아니라 "사용자 설정"에 넣는다.
+//   Ctrl+Shift+P → "Preferences: Open User Settings (JSON)"
+//   "java.configuration.runtimes": [
+//     { "name": "JavaSE-17", "path": "<JDK 17 설치 경로>", "default": true }
+//   ]
+// 보통은 JDK 가 PATH 에 있으면 언어 서버가 알아서 찾으므로 지정할 필요가 없다.
+{
+  // ── Gradle 프로젝트 임포트 ────────────────────────────────────────
+  // 저장소에 포함된 wrapper(gradle 9.7.1)로 임포트한다.
+  // 각자 설치한 Gradle 버전 차이로 생기는 문제를 막아준다.
+  "java.import.gradle.enabled": true,
+  "java.import.gradle.wrapper.enabled": true,
+
+  // build.gradle 을 고치면 클래스패스를 자동으로 다시 읽는다.
+  // 물어보는 게 나으면 "interactive" 로 바꾼다.
+  "java.configuration.updateBuildConfiguration": "automatic",
+
+  // ── Lombok ───────────────────────────────────────────────────────
+  // @Getter, @Builder, @RequiredArgsConstructor 가 생성한 코드를 인식시킨다.
+  // 이게 꺼져 있으면 getId(), builder() 등이 전부 "존재하지 않음" 으로 뜬다.
+  "java.jdt.ls.lombokSupport.enabled": true,
+
+  // ── 편집 경험 ─────────────────────────────────────────────────────
+  "editor.semanticHighlighting.enabled": true,
+  "java.completion.importOrder": ["java", "javax", "jakarta", "org", "com", ""],
+  "java.saveActions.organizeImports": true,
+  "java.sources.organizeImports.starThreshold": 99,
+  "java.sources.organizeImports.staticStarThreshold": 99,
+
+  // 컴파일 오류를 문제 패널에 계속 표시한다 (기본값은 열린 파일만).
+  "java.errors.incompleteClasspath.severity": "warning",
+
+  // ── 탐색기에서 숨길 것 ────────────────────────────────────────────
+  "files.exclude": {
+    "**/.gradle": true,
+    "**/build": true,
+    "**/bin": true
+  },
+  "files.watcherExclude": {
+    "**/.gradle/**": true,
+    "**/build/**": true
+  },
+
+  "[java]": {
+    "editor.tabSize": 4,
+    "editor.insertSpaces": true
+  }
+}

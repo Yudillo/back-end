@@ -1,0 +1,42 @@
+### Gradle ###
+.gradle
+build/
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+out/
+
+### Eclipse / STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+bin/
+
+### VS Code ###
+# 팀이 공유할 설정은 커밋한다 (클론하면 바로 F5 로 실행되도록).
+# 개인 취향/환경에 따라 달라지는 파일만 제외한다.
+.vscode/*
+!.vscode/settings.json
+!.vscode/launch.json
+!.vscode/extensions.json
+!.vscode/tasks.json
+
+### env ###
+.env
+.env.local
+application-local.yml
+!src/main/resources/application-local.yml
+
+### OS ###
+.DS_Store
+Thumbs.db

@@ -1,0 +1,25 @@
+# 운영 프로필. 모든 비밀값은 환경변수로만 주입한다.
+server:
+  # Nginx 같은 리버스 프록시 뒤에 둘 때 필요하다.
+  # 프록시가 붙여주는 X-Forwarded-Proto / -Host / -For 를 신뢰해,
+  # 앱이 만드는 링크와 로그의 클라이언트 IP 가 실제 외부 주소를 따르게 한다.
+  # 프록시를 거치지 않고 앱을 직접 노출한다면 헤더 위조가 가능하므로 이 줄을 지운다.
+  forward-headers-strategy: framework
+
+spring:
+  jpa:
+    show-sql: false
+  flyway:
+    clean-disabled: true
+
+springdoc:
+  # 운영에서는 API 문서를 닫아둔다. 필요하면 SecurityConfig 에서 인증을 걸고 열 것.
+  api-docs:
+    enabled: false
+  swagger-ui:
+    enabled: false
+
+logging:
+  level:
+    root: INFO
+    com.yudillo.api: INFO

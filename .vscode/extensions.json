@@ -1,0 +1,13 @@
+{
+  // 이 프로젝트를 열면 VS Code 가 설치를 권하는 확장 목록
+  "recommendations": [
+    "vscjava.vscode-java-pack",
+    "vmware.vscode-boot-dev-pack"
+  ],
+
+  // georgewfraser.vscode-javac 는 redhat.java 와 같은 Java 언어 서버 역할을 한다.
+  // 둘이 동시에 켜져 있으면 서로 충돌해 자동완성과 Ctrl+클릭이 깨진다.
+  "unwantedRecommendations": [
+    "georgewfraser.vscode-javac"
+  ]
+}
