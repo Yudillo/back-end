@@ -148,7 +148,7 @@ refresh_tokens
      JacksonConfig  → Instant 직렬화기를 JsonMapper 에 등록
      ...
 
-⑦ 내장 Tomcat 기동 (SERVER_PORT, 기본 8080)
+⑦ 내장 Tomcat 기동 (SERVER_PORT, 기본 8090)
 
 ⑧ 첫 /v3/api-docs 요청 시 OpenAPI 문서 생성 (이후 캐시)
      OperationCustomizer  → 컨트롤러 애노테이션 읽어 응답 정의 추가

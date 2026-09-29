@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * Swagger UI: http://localhost:8080/swagger-ui.html
+ * Swagger UI: http://localhost:8090/swagger-ui.html
  * 우측 상단 Authorize 에 Access 토큰을 넣으면 보호된 API 도 문서에서 바로 호출된다.
  */
 @Configuration
