@@ -72,6 +72,10 @@ app:
   cors:
     allowed-origins: ${CORS_ALLOWED_ORIGINS:http://localhost:3000}
 
+  # 비밀번호 재설정 / 이메일 인증 메일의 링크가 가리킬 프론트엔드 주소.
+  frontend:
+    base-url: ${FRONTEND_BASE_URL:http://localhost:3000}
+
 springdoc:
   swagger-ui:
     path: /swagger-ui.html

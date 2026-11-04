@@ -21,7 +21,9 @@ public enum SuccessMessage {
     LOGIN("로그인에 성공했습니다."),
     LOGOUT("로그아웃되었습니다."),
     NAME_UPDATED("이름이 변경되었습니다."),
-    PASSWORD_CHANGED("비밀번호가 변경되었습니다. 다시 로그인해 주세요.");
+    PASSWORD_CHANGED("비밀번호가 변경되었습니다. 다시 로그인해 주세요."),
+    PASSWORD_RESET_MAIL_SENT("가입된 이메일이라면 비밀번호 재설정 링크가 발송됩니다."),
+    PASSWORD_RESET("비밀번호가 재설정되었습니다. 새 비밀번호로 로그인해 주세요.");
 
     private final String message;
 

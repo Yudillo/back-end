@@ -1,10 +1,13 @@
 package com.yudillo.api.auth.controller;
 
 import com.yudillo.api.auth.dto.LoginRequest;
+import com.yudillo.api.auth.dto.PasswordResetConfirmRequest;
+import com.yudillo.api.auth.dto.PasswordResetRequest;
 import com.yudillo.api.auth.dto.ReissueRequest;
 import com.yudillo.api.auth.dto.SignupRequest;
 import com.yudillo.api.auth.dto.TokenResponse;
 import com.yudillo.api.auth.service.AuthService;
+import com.yudillo.api.auth.service.PasswordResetService;
 import com.yudillo.api.global.config.ApiErrorCodes;
 import com.yudillo.api.global.exception.ErrorCode;
 import com.yudillo.api.global.config.ApiSuccessMessage;
@@ -32,6 +35,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class AuthController {
 
     private final AuthService authService;
+    private final PasswordResetService passwordResetService;
 
     @ApiErrorCodes({ErrorCode.INVALID_INPUT, ErrorCode.DUPLICATE_EMAIL})
     @ApiSuccessMessage(SuccessMessage.SIGNUP)
@@ -67,5 +71,27 @@ public class AuthController {
     public ApiResponse<Void> logout(@CurrentUser AuthUser authUser) {
         authService.logout(authUser.getId());
         return ApiResponse.ok(SuccessMessage.LOGOUT);
+    }
+
+    @ApiErrorCodes(ErrorCode.INVALID_INPUT)
+    @ApiSuccessMessage(SuccessMessage.PASSWORD_RESET_MAIL_SENT)
+    @Operation(summary = "비밀번호 재설정 메일 요청",
+            description = "가입 여부와 관계없이 항상 같은 응답을 준다. 가입된 이메일일 때만 메일이 발송된다.")
+    @SecurityRequirements
+    @PostMapping("/password/reset-request")
+    public ApiResponse<Void> requestPasswordReset(@Valid @RequestBody PasswordResetRequest request) {
+        passwordResetService.requestReset(request.email());
+        return ApiResponse.ok(SuccessMessage.PASSWORD_RESET_MAIL_SENT);
+    }
+
+    @ApiErrorCodes({ErrorCode.INVALID_INPUT, ErrorCode.INVALID_EMAIL_TOKEN,
+                    ErrorCode.SAME_PASSWORD})
+    @ApiSuccessMessage(SuccessMessage.PASSWORD_RESET)
+    @Operation(summary = "새 비밀번호 설정", description = "재설정 메일의 token 으로 비밀번호를 바꾼다. 기존 Refresh 토큰은 모두 폐기된다.")
+    @SecurityRequirements
+    @PostMapping("/password/reset")
+    public ApiResponse<Void> resetPassword(@Valid @RequestBody PasswordResetConfirmRequest request) {
+        passwordResetService.resetPassword(request.token(), request.newPassword());
+        return ApiResponse.ok(SuccessMessage.PASSWORD_RESET);
     }
 }
